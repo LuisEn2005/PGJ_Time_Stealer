@@ -2,41 +2,39 @@
 
 Player::Player(float x, float y) 
   : position({ x, y }), size({ 40.0f, 60.0f }),
-  currAction(PlayerAction::NONE), currColor(WHITE),
-  actionTimer(0.0f), doubleTapTimer(0.0f) {}
+  currAction(PlayerAction::NONE), currColor(WHITE){
+    TimerStart(&actionTimer, 0.0f);
+    TimerStart(&doubleTapTimer, 0.0f);
+    actionTimer.finished = true;
+    doubleTapTimer.finished = true;
+  }
 
-  void Player::Update(float deltaTime) {
-    // Decrementar temporizadores
-    if (actionTimer > 0.0f) {
-      actionTimer -= deltaTime;
-      if (actionTimer <= 0.0f) {
-        currAction = PlayerAction::NONE;
-        currColor = WHITE; // Regresa al color normal
-      }
-    }
+void Player::Update(float deltaTime){
+  TimerUpdate(&actionTimer);
+  TimerUpdate(&doubleTapTimer);
 
-    if (doubleTapTimer > 0.0f) {
-      doubleTapTimer -= deltaTime;
-    }
-
-    if (IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)) {
-      if (doubleTapTimer > 0.0f && currAction == PlayerAction::RED_ACTION) {
-        SetAction(PlayerAction::BLUE_ACTION, BLUE);
-        doubleTapTimer = 0.0f;
-      } else {
-        SetAction(PlayerAction::RED_ACTION, RED);
-        doubleTapTimer = 0.25f;
-      }
-    }
-    else if (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_S)) {
-      SetAction(PlayerAction::GREEN_ACTION, GREEN);
+  if(TimerDone(&actionTimer) && currAction != PlayerAction::NONE){
+    currAction = PlayerAction::NONE;
+    currColor = WHITE;
+  }
+  if(IsKeyPressed(KEY_UP)){
+    if(!TimerDone(&doubleTapTimer) && currAction == PlayerAction::RED_ACTION){
+      SetAction(PlayerAction::BLUE_ACTION, BLUE);
+      doubleTapTimer.finished = true;
+    } else {
+      SetAction(PlayerAction::RED_ACTION, RED);
+      TimerStart(&doubleTapTimer, 0.25f);
     }
   }
+  else if(IsKeyPressed(KEY_DOWN)){
+    SetAction(PlayerAction::GREEN_ACTION, GREEN);
+  }
+}
 
 void Player::SetAction(PlayerAction action, Color color){
   currAction = action;
   currColor = color;
-  actionTimer = 0.4f;
+  TimerStart(&actionTimer, 0.4f);
 }
 
 void Player::Draw() const{

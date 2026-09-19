@@ -16,9 +16,7 @@ int main(void) {
   Player player(150, floorY - 60.0f);
 
   std::vector<Obstacle> obstaculos;
-  obstaculos.push_back(Obstacle(700, floorY, ObstacleType::BAJO));
-  obstaculos.push_back(Obstacle(1100, floorY, ObstacleType::DOBLE_BAJO));
-  obstaculos.push_back(Obstacle(1500, floorY, ObstacleType::ALTO));
+
   bool gameOver = false;
   float gameSpeed = 300.0f;
 
@@ -80,12 +78,12 @@ int main(void) {
 
     DrawRectangle(150 + 20, 0, 90, 600, Fade(YELLOW, 0.15f));
 
-    for (const auto& obs : obstaculos) {
+    for(const auto& obs : obstaculos){
       obs.Draw();
     }
     player.Draw();
 
-    if (gameOver) {
+    if(gameOver){
       DrawText("¡GAME OVER! Fallaste la accion", 240, 280, 25, RED);
     } else {
       DrawText("Rojo: UP | Azul: UP x2 | Verde: DOWN", 10, 10, 20, BLACK);

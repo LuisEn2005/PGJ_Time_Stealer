@@ -2,11 +2,11 @@
 #define PLAYER_H
 #include "../RaylibTools/raylibtools.h"
 
-enum class PlayerAction {
-    NONE,
-    RED_ACTION,
-    BLUE_ACTION,
-    GREEN_ACTION
+enum class PlayerAction{
+  NONE,
+  RED_ACTION,
+  BLUE_ACTION,
+  GREEN_ACTION
 };
 
 class Player{
@@ -16,17 +16,17 @@ class Player{
     PlayerAction currAction;
     Color currColor;
 
-    float actionTimer;
-    float doubleTapTimer;
+    Timer actionTimer;
+    Timer doubleTapTimer;
 
   public:
     Player(float x, float y);
 
     void Update(float deltaTime);
     void Draw() const;
-    
+
     void SetAction(PlayerAction action, Color color);
-    
+
     Vector2 GetPosition() const { return position; }
     PlayerAction GetCurrAction() const { return currAction; }
 };
