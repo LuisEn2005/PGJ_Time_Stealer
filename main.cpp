@@ -20,6 +20,13 @@ int main(void) {
   bool gameOver = false;
   float gameSpeed = 300.0f;
 
+  Image clavaSheet = LoadImage("./Entities/obsSprites/clava_pairs.png");
+  
+  Texture2D clava_tex = LoadTextureFromImage(clavaSheet);
+
+  UnloadImage(clavaSheet);
+  int simpleVar, highVar;
+
   Timer spawnTimer;
   TimerStart(&spawnTimer, 1.5f);
 
@@ -33,7 +40,13 @@ int main(void) {
 
       if(TimerDone(&spawnTimer)){
         ObstacleType type = static_cast<ObstacleType>(rand() % 3);
-        obstaculos.push_back(Obstacle(900.0f, floorY, type));
+        if(type == ObstacleType::DOBLE_BAJO){
+          highVar = rand() % 16;
+          obstaculos.push_back(Obstacle(900.0f, floorY, type, clava_tex, highVar));
+        } else{
+          simpleVar = rand() % 4; 
+          obstaculos.push_back(Obstacle(900.0f, floorY, type, clava_tex, simpleVar));
+        }
 
         float nextSpawnTime = 1.2f + ((float)rand() / RAND_MAX) * 0.8f;
         TimerStart(&spawnTimer, nextSpawnTime);
