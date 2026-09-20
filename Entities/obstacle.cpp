@@ -1,7 +1,7 @@
 #include "obstacle.h"
 
 Obstacle::Obstacle(float x, float floorY, ObstacleType type, Texture2D tex, int variant) 
-  : type(type), isCleared(false), texture(tex) 
+  : type(type), isCleared(false), texture(tex)
 {
   float blockSize = 40.0f;
 
@@ -17,11 +17,11 @@ Obstacle::Obstacle(float x, float floorY, ObstacleType type, Texture2D tex, int 
       size = { blockSize, blockSize * 2.0f };
       position = { x, floorY - size.y };
       color = BLUE;
-      srcRec = { (variant % 16) * 40.0f, 40.0f, 40.0f, 80.0f };
+      srcRec = { (variant % 16) * 40.0f, 0.0f, 40.0f, 80.0f };
       break;
 
     case ObstacleType::ALTO:
-      size = { blockSize * 1.5f, blockSize };
+      size = { blockSize, blockSize };
       position = { x, floorY - 70.0f };
       color = GREEN;
       srcRec = { (variant % 4) * 40.0f, 40.0f, 40.0f, 40.0f };
@@ -35,9 +35,9 @@ void Obstacle::Update(float deltaTime, float gameSpeed){
 
 void Obstacle::Draw() const{
   Color drawColor = isCleared ? GRAY : WHITE;
-  Rectangle srcRec = { 0.0f, 0.0f, (float)texture.width, (float)texture.height };
-  Rectangle destRec = { position.x, position.y, size.x, size.y };
-  
+  Rectangle destRec = { position.x, position.y, size.x, size.y }; 
   DrawTexturePro(texture, srcRec, destRec, { 0.0f, 0.0f }, 0.0f, drawColor);
+
+
   DrawRectangleLinesEx(destRec, 2, color);
 }

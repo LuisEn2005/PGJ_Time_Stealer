@@ -1,10 +1,13 @@
 #include "RaylibTools/raylibtools.h"
 #include <vector>
+#include <cstdlib>
+#include <ctime>
+
 #include "Entities/player.h"
 #include "Entities/obstacle.h"
-#include <cstdlib>
 
 int main(void) {
+  srand(time(0));
   const int screenWidth = 800;
   const int screenHeight = 600;
 
