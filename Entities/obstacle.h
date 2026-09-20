@@ -17,11 +17,14 @@ class Obstacle {
     Color color;
     bool isCleared;
 
+    Texture2D texture;
+    Rectangle srcRec;
   public:
-    Obstacle(float x, float floorY, ObstacleType type);
+    Obstacle(float x, float floorY, ObstacleType type, Texture2D tex, int variant);
 
     void Update(float deltaTime, float gameSpeed);
     void Draw() const;
+
     Vector2 GetPosition() const { return position; }
     ObstacleType GetType() const { return type; }
 
