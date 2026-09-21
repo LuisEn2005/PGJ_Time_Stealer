@@ -19,6 +19,7 @@ class Obstacle {
 
     Texture2D texture;
     Rectangle srcRec;
+    Rectangle extraRec;
   public:
     Obstacle(float x, float floorY, ObstacleType type, Texture2D tex, int variant);
 
