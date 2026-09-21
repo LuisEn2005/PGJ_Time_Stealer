@@ -35,9 +35,13 @@ void Obstacle::Update(float deltaTime, float gameSpeed){
 
 void Obstacle::Draw() const{
   Color drawColor = isCleared ? GRAY : WHITE;
-  Rectangle destRec = { position.x, position.y, size.x, size.y }; 
+  Rectangle destRec = { position.x, position.y, size.x, size.y };
   DrawTexturePro(texture, srcRec, destRec, { 0.0f, 0.0f }, 0.0f, drawColor);
 
+  if(type == ObstacleType::BAJO){
+    Rectangle destRecTop = { position.x, position.y - 80.0f, size.x, size.y };
+    DrawTexturePro(texture, srcRec, destRecTop, { 0.0f, 0.0f }, 0.0f, drawColor);
+  }
 
   DrawRectangleLinesEx(destRec, 2, color);
 }

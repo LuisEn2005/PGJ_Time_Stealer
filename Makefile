@@ -13,7 +13,8 @@ RAYLIB_TOOLS_OBJ = $(RAYLIB_TOOLS)/buttons/button.o \
 
 SOURCES = main.cpp \
 	  Entities/player.cpp \
-	  Entities/obstacle.cpp
+	  Entities/obstacle.cpp \
+	  Entities/background.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

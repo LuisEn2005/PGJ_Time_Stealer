@@ -5,6 +5,7 @@
 
 #include "Entities/player.h"
 #include "Entities/obstacle.h"
+#include "Entities/background.h"
 
 int main(void) {
   srand(time(0));
@@ -26,6 +27,9 @@ int main(void) {
   Image clavaSheet = LoadImage("./Entities/obsSprites/clava_pairs.png");
   
   Texture2D clava_tex = LoadTextureFromImage(clavaSheet);
+  Texture2D farBgTex = LoadTexture("./sprites/Background2.png");
+
+  Background background(farBgTex, { 0 }, 800, 150);
 
   UnloadImage(clavaSheet);
   int simpleVar, highVar;
@@ -37,6 +41,7 @@ int main(void) {
     float deltaTime = GetFrameTime();
 
     if(!gameOver){
+      background.Update(deltaTime, gameSpeed);
       player.Update(deltaTime);
 
       TimerUpdate(&spawnTimer);
@@ -93,6 +98,8 @@ int main(void) {
     DrawLine(0, (int)floorY, 800, (int)floorY, DARKGRAY);
 
     DrawRectangle(150 + 20, 0, 90, 600, Fade(YELLOW, 0.15f));
+
+    background.Draw();
 
     for(const auto& obs : obstaculos){
       obs.Draw();
