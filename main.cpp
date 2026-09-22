@@ -30,6 +30,7 @@ int main(void) {
   Texture2D farBgTex = LoadTexture("./sprites/Background2.png");
 
   Background background(farBgTex, { 0 }, 800, 150);
+  Rectangle rec = { player.GetPosition().x + 20, 0, 50, 600 };
 
   UnloadImage(clavaSheet);
   int simpleVar, highVar;
@@ -63,11 +64,12 @@ int main(void) {
       for(auto& obs : obstaculos){
         obs.Update(deltaTime, gameSpeed);
 
-        if (obs.IsCleared()) continue;
+        if(obs.IsCleared()) continue;
 
         float dist = obs.GetPosition().x - player.GetPosition().x;
 
-        if(dist > 20.0f && dist < 110.0f){
+
+        if(dist > 20.0f && dist < rec.width + 20.0f){
           if(obs.GetType() == ObstacleType::BAJO && player.GetCurrAction() == PlayerAction::RED_ACTION){
             obs.SetCleared(true);
           }
@@ -97,7 +99,7 @@ int main(void) {
 
     DrawLine(0, (int)floorY, 800, (int)floorY, DARKGRAY);
 
-    DrawRectangle(150 + 20, 0, 90, 600, Fade(YELLOW, 0.15f));
+    DrawRectangleRec(rec, Fade(YELLOW, 0.15f));
 
     background.Draw();
 
