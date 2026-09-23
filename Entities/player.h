@@ -17,7 +17,9 @@ class Player{
     Color currColor;
 
     Timer actionTimer;
-    Timer doubleTapTimer;
+    Timer cooldownTimer;
+
+    float cooldownDuration;
 
   public:
     Player(float x, float y);
