@@ -28,8 +28,10 @@ int main(void) {
   
   Texture2D clava_tex = LoadTextureFromImage(clavaSheet);
   Texture2D farBgTex = LoadTexture("./sprites/Background2.png");
+  Texture2D midBgTex = LoadTexture("./sprites/Background1.png");
+  Texture2D gameplayBgTex = LoadTexture("./sprites/Background.png");
 
-  Background background(farBgTex, { 0 }, 800, 150);
+  Background background(farBgTex, midBgTex, gameplayBgTex, 800, 150);
   Rectangle rec = { player.GetPosition().x + 20, 0, 50, 600 };
 
   UnloadImage(clavaSheet);
