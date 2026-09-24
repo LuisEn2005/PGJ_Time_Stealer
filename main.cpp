@@ -17,7 +17,11 @@ int main(void) {
 
   float floorY = 550.0f;
 
-  Player player(150, floorY - 60.0f);
+  Texture2D texIdle = LoadTexture("./Entities/playerSprites/idle_move.png");
+  Texture2D texRight = LoadTexture("./Entities/playerSprites/right_move.png");
+  Texture2D texUp = LoadTexture("./Entities/playerSprites/up_move.png");
+  Texture2D texDown = LoadTexture("./Entities/playerSprites/down_move.png");
+  Player player(150, floorY - 60.0f, texIdle, texRight, texUp, texDown);
 
   std::vector<Obstacle> obstaculos;
 
@@ -25,7 +29,7 @@ int main(void) {
   float gameSpeed = 300.0f;
 
   Image clavaSheet = LoadImage("./Entities/obsSprites/clava_pairs.png");
-  
+
   Texture2D clava_tex = LoadTextureFromImage(clavaSheet);
   Texture2D farBgTex = LoadTexture("./sprites/Background2.png");
   Texture2D midBgTex = LoadTexture("./sprites/Background1.png");
