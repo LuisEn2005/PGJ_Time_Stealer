@@ -21,13 +21,23 @@ class Player{
 
     float cooldownDuration;
 
+    Texture2D texIdle;
+    Texture2D texRight;
+    Texture2D texUp;
+    Texture2D texDown;
+  
+    Texture2D currTex;
+    int totalFrames;
+    int currFrame;
+    float frameCounter;
+    float frameSpeed;
   public:
-    Player(float x, float y);
+    Player(float x, float y, Texture2D idle, Texture2D right, Texture2D up, Texture2D down);
 
     void Update(float deltaTime);
     void Draw() const;
 
-    void SetAction(PlayerAction action, Color color);
+    void SetAction(PlayerAction action, Color color, Texture2D tex, int currTotalFrames);
 
     Vector2 GetPosition() const { return position; }
     PlayerAction GetCurrAction() const { return currAction; }
