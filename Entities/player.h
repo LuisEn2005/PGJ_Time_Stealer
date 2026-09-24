@@ -29,8 +29,8 @@ class Player{
     Texture2D currTex;
     int totalFrames;
     int currFrame;
-    int frameCounter;
-    int frameSpeed;
+    float frameCounter;
+    float frameSpeed;
   public:
     Player(float x, float y, Texture2D idle, Texture2D right, Texture2D up, Texture2D down);
 

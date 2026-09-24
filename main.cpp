@@ -36,7 +36,7 @@ int main(void) {
   Texture2D gameplayBgTex = LoadTexture("./sprites/Background.png");
 
   Background background(farBgTex, midBgTex, gameplayBgTex, 800, 150);
-  Rectangle rec = { player.GetPosition().x + 20, 0, 50, 600 };
+  Rectangle rec = { player.GetPosition().x + 40, 0, 50, 600 };
 
   UnloadImage(clavaSheet);
   int simpleVar, highVar;
@@ -75,7 +75,7 @@ int main(void) {
         float dist = obs.GetPosition().x - player.GetPosition().x;
 
 
-        if(dist > 20.0f && dist < rec.width + 20.0f){
+        if(dist > 40.0f && dist < rec.width + 40.0f){
           if(obs.GetType() == ObstacleType::BAJO && player.GetCurrAction() == PlayerAction::RED_ACTION){
             obs.SetCleared(true);
           }
@@ -86,7 +86,7 @@ int main(void) {
             obs.SetCleared(true);
           }
         }
-        else if(dist <= 20.0f && !obs.IsCleared()){
+        else if(dist <= 40.0f && !obs.IsCleared()){
           gameOver = true;
         }
       }
@@ -105,7 +105,6 @@ int main(void) {
 
     DrawLine(0, (int)floorY, 800, (int)floorY, DARKGRAY);
 
-    DrawRectangleRec(rec, Fade(YELLOW, 0.15f));
 
     background.Draw();
 
@@ -120,6 +119,7 @@ int main(void) {
       DrawText("Rojo: UP | Azul: UP x2 | Verde: DOWN", 10, 10, 20, BLACK);
     }
 
+    //DrawRectangleRec(rec, Fade(YELLOW, 0.15f));
     EndDrawing();
   }
   CloseWindow();
