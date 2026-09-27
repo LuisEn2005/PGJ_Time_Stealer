@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player(float x, float y, Texture2D idle, Texture2D right, Texture2D up, Texture2D down) 
-  : position({ x, y }), size({ 40.0f, 60.0f }), currAction(PlayerAction::NONE), currColor(WHITE), cooldownDuration(0.5f), texIdle(idle), texRight(right), texUp(up), texDown(down), currFrame(0), frameCounter(0.0f), frameSpeed(1.0f / 12.0f){
+  : position({ x, y }), size({ 40.0f, 60.0f }), currAction(PlayerAction::NONE), currColor(WHITE), cooldownDuration(0.8f), texIdle(idle), texRight(right), texUp(up), texDown(down), currFrame(0), frameCounter(0.0f), frameSpeed(1.0f / 12.0f){
     TimerStart(&actionTimer, 0.0f);
     TimerStart(&cooldownTimer, 0.0f);
 
@@ -57,7 +57,7 @@ void Player::SetAction(PlayerAction action, Color color, Texture2D tex, int curr
   currFrame = 0;
   frameCounter = 0.0f;
 
-  TimerStart(&actionTimer, 0.5f);
+  TimerStart(&actionTimer, 0.4f);
 }
 
 void Player::Draw() const{

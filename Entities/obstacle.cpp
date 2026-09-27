@@ -6,21 +6,21 @@ Obstacle::Obstacle(float x, float floorY, ObstacleType type, Texture2D tex, int 
   float blockSize = 40.0f;
 
   switch(type){
-    case ObstacleType::BAJO:
+    case ObstacleType::RIGHT:
       size = { blockSize, blockSize };
       position = { x, floorY - size.y };
       color = RED;
       srcRec = { (variant % 4) * 40.0f, 40.0f, 40.0f, 40.0f };
       break;
 
-    case ObstacleType::DOBLE_BAJO:
+    case ObstacleType::UP:
       size = { blockSize, blockSize * 2.0f };
       position = { x, floorY - size.y };
       color = BLUE;
       srcRec = { (variant % 16) * 40.0f, 0.0f, 40.0f, 80.0f };
       break;
 
-    case ObstacleType::ALTO:
+    case ObstacleType::DOWN:
       size = { blockSize, blockSize };
       position = { x, floorY - 70.0f };
       color = GREEN;
@@ -37,8 +37,13 @@ void Obstacle::Draw() const{
   Rectangle destRec = { position.x, position.y, size.x, size.y };
   DrawTexturePro(texture, srcRec, destRec, { 0.0f, 0.0f }, 0.0f, WHITE);
 
-  if(type == ObstacleType::BAJO){
+  if(type == ObstacleType::RIGHT){
     Rectangle destRecTop = { position.x, position.y - 100.0f, size.x, size.y };
+    DrawTexturePro(texture, srcRec, destRecTop, { 0.0f, 0.0f }, 0.0f, WHITE);
+
+  }
+  if(type == ObstacleType::DOWN){
+    Rectangle destRecTop = { position.x, position.y - 40.0f, size.x, size.y };
     DrawTexturePro(texture, srcRec, destRecTop, { 0.0f, 0.0f }, 0.0f, WHITE);
   }
 

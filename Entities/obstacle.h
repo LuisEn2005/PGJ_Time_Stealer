@@ -4,9 +4,9 @@
 #include "../RaylibTools/raylibtools.h"
 
 enum class ObstacleType {
-  BAJO,
-  DOBLE_BAJO,
-  ALTO
+  RIGHT,
+  UP,
+  DOWN
 };
 
 class Obstacle {
